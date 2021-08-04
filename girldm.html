@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Daniel Praymayer | Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/additionalStyle.css" rel="stylesheet" />
+    </head>
+        <body id="page-top" style="text-align: center;">
+        
+        <br><br>
+        <h1 style="color:#6BE1AF; font-family: 'Lobster', serif; font-size: 70px;">Hi! I'm Girl_DM_</h1>
+        <br>
+        <span style="font-size: 30px;">a.k.a.</span>
+        <div class="container" style="height: 50px; font-size: 40px; margin: auto;">
+        <span id="description1"></span><span id="description2"></span>
+        </div>
+        <br>
+        <button id="pause">Pause</button>
+        <br><br><br>
+        <div style="width: 400px; margin: auto;">
+        <p style="font-style: italic; color: grey;">(Neither this page nor website are affiliated with <a href="https://www.twitch.tv/girl_dm_">girl_dm_</a> in any way. Please do not contact her about anything you find here.)</p>
+        </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        var text_d = ["Dungeon", "Dangerous", "Doomsday", "Daring", "Dashing",
+                    "Decriminalized", "Decarbonated", "Deconstructed", "Declarably", "Defensible",
+                    "Decentralized", "Decommissioned", "Decompression", "Deactivated", "Decipher",
+                    "Daydream", "Dragon", "Daydreaming", "Daggerlike", "Deadpan",
+                    "Deadliest", "Dark", "Dastardly", "Dance", "Dainty",
+                    "Dab", "Doodle", "Dagger", "Deal", "Debt",
+                    "Daily", "Doomed", "Direct", "Dolphin", "Dictionary"];
+        var text_m = ["Master", "Monster", "Machine", "Mistress", "Marinade",
+                    "Maker", "Message", "Mathematician", "Magician", "Macroeconomist",
+                    "Mech", "Microwave", "Metafictionist", "Manifestation", "Mastermind",
+                    "Microbiologist", "Manicurist", "Maneuver", "Magistrate", "Marionette",
+                    "Magnet", "Magic", "Magazine", "Muscle", "Macaroon",
+                    "Macaroni", "Mafia", "Maiden", "Mantra", "Major",
+                    "Mango", "Manor", "Mapleleaf", "Maze", "Mask"];
+        var index_d = 0;
+        var index_m = 0;
+
+        var doLoop = true;
+
+        $("#description1").fadeOut("slow");
+
+        setInterval(function(){
+            if(doLoop){
+                $("#description1").stop().html(text_d[index_d]).fadeIn(50,function(){
+                    index_d = randomIntFromInterval(0, 34);
+                    $("#description1").delay(50).fadeOut(50);
+                });
+                $("#description2").stop().html(text_m[index_m]).fadeIn(50,function(){
+                    index_m = randomIntFromInterval(0, 34);
+                    $("#description2").delay(50).fadeOut(50);
+                });
+                $("#pause").html("Pause");
+            } else{
+                $("#description1").stop().html("Girl_" + text_d[index_d]).fadeIn(50);
+                $("#description2").stop().html(text_m[index_m] + "_").fadeIn(50);
+                $("#pause").html("Again!");
+            }
+        },200);
+
+        $( "#pause" ).click(function() {
+            if(doLoop){
+                doLoop = false;
+            } else {
+                index_d = randomIntFromInterval(0, 34);
+                index_m = randomIntFromInterval(0, 34);
+                doLoop = true;
+            }
+        });
+    
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+    
+    </script>
+    </body>
+</html>
