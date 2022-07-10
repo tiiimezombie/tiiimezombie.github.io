@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="tiiimezombie" />
+        <title>tiiimezombie sh!tposts</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/additionalStyle.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="TMA.js"></script>
+    </head>
+    <style>
+        /*.container {
+            cursor: grab;
+            overflow: auto;
+        }*/
+
+        .parent{
+            width:90vw;
+            height:80vh;
+            margin:auto;
+            border:5px solid #73AD21;
+            overflow: hidden;
+        }
+        .child{
+            width:1000px;
+            height:2000px;
+            float:center;
+            padding:10px;
+        }
+
+        .nonSelect{
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -webkit-touch-callout : none
+            -moz-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        .block{
+            border:5px solid #73AD21;
+        }
+
+        /* https://dev.to/dcodeyt/creating-beautiful-html-tables-with-css-428l */
+        .styled-table {
+            border-collapse: collapse;
+            margin: auto;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 90vw;
+            max-width: 90vw;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+            border-bottom: thin solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+        .styled-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+
+
+
+    </style>
+    
+    <body onload="onPageLoad()"> 
+        <!-- content first, script second -->
+        <div style="text-align: center;"><label for="latestEp">Latest episode you've listened to:</label>
+        <input id="latestEp" type="number" min="0" max="200" value="0">
+        <button type="button" id="submit1">Go</button>
+        </div><br>
+
+        <table class="styled-table">
+            <colgroup>
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 65%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td colspan="3" style="text-align:center;">People, voiced</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="voicedPeopleContents"></tbody>
+        </table>
+
+        <br>
+
+        <table class="styled-table">
+            <colgroup>
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 70%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td colspan="3" style="text-align:center;">People, mentioned</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="unvoicedPeopleContents"></tbody>
+        </table>
+
+        <br>
+
+        <table class="styled-table">
+            <colgroup>
+                <col span="1" style="width: 20%;">
+                <col span="1" style="width: 15%;">
+                <col span="1" style="width: 70%;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <td colspan="3" style="text-align:center;">Mysteries, mentioned</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="mysteriesContents"></tbody>
+        </table>
+
+        <script>
+            $("#latestEp")
+            .keyup(function() {
+                var value = $( this ).val();
+                value = value.replace(/[^0-9]/g, '');
+                value = Math.min(value, 200);
+                $(this).val(value);
+            })
+            .keyup();
+
+            $("#submit1").click(function(){
+                GetPeople( $("#latestEp").val());
+            });
+
+            {{/* $("#latestEp").keydown(function(){
+                var value = $( this ).val();
+                GetPeople(value);
+            })
+            .keydown(); */}}
+        </script>
+    </body>
+</html>
+
+<!--
+Sources
+- draggable container: https://stackoverflow.com/questions/28576636/mouse-click-and-drag-instead-of-horizontal-scroll-bar-to-view-full-content-of-c
+- unselectable text: https://code2care.org/pages/how-to-make-div-or-text-in-html-unselectable-using-css
+
+
+-->
